@@ -2,7 +2,7 @@
   "name": "cpr-ole",
   "license": "BSD-2-Clause",
   "description": "OpenLayers Editor",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "main": "build/index.js",
   "dependencies": {},
   "peerDependencies": {
