@@ -1,0 +1,29 @@
+image: harbor.clearpathrobotics.com/build/cpr-node-focal:16.14.2
+
+stages:
+  - test
+  # - doc
+  # - deploy_doc
+  - build_for_jfrog
+
+before_script:
+  - npm config set fetch-retry-maxtimeout 300000 -g
+
+test:
+  stage: test
+  script:
+    - npm ci
+    - npm test
+  tags:
+    - generic
+
+build_for_jfrog:
+  stage: build_for_jfrog
+  only:
+    - tags
+  script:
+    - npm ci
+    - npm run build
+    - npm publish --registry http://prod-vm-jfrog-01.clearpath.ai/api/npm/npm-local/
+  tags:
+    - generic
