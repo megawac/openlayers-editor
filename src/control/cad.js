@@ -235,6 +235,9 @@ class CadControl extends Control {
    * @param {ol.MapBrowserEvent} evt Move event.
    */
   onMove(evt) {
+    this.linesLayer.getSource().clear();
+    this.snapLayer.getSource().clear();
+
     if (
       typeof this.handleMoveEvent === 'function' &&
       !this.handleMoveEvent(evt)
@@ -246,9 +249,6 @@ class CadControl extends Control {
       evt.coordinate,
       this.nbClosestFeatures,
     );
-
-    this.linesLayer.getSource().clear();
-    this.snapLayer.getSource().clear();
 
     this.pointerInteraction.dispatchEvent(
       new SnapEvent(SnapEventType.SNAP, features.length ? features : null, evt),
