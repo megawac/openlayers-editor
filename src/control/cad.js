@@ -56,6 +56,7 @@ class CadControl extends Control {
    *   snap points (default is 30).
    * @param {Boolean} [options.useMapUnits] Whether to use map units
    *   as measurement for point snapping. Default is false (pixel are used).
+   * @param {ol.VectorSource} [options.source] The vector source to retrieve the snappable features from.
    * @param {ol.style.Style.StyleLike} [options.snapStyle] Style used for the snap layer.
    * @param {ol.style.Style.StyleLike} [options.linesStyle] Style used for the lines layer.
    * @param {ol.style.Style.StyleLike} [options.orthoLinesStyle] Style used for the lines layer.
