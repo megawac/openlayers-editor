@@ -46,6 +46,8 @@ class CadControl extends Control {
    *   snap lines that arae perpendicular to segment (default is true).
    * @param {Boolean} [options.showSegmentLines] Whether to show
    *   snap lines that extends a segment (default is true).
+   * @param {Boolean} [options.showVerticalAndHorizontalLines] Whether to show vertical
+   *   and horizontal lines for each snappable point (default is true).
    * @param {Boolean} [options.snapLinesOrder] Define order of display of snap lines,
    *   must be an array containing the following values 'ortho', 'segment', 'vh'. Default is ['ortho', 'segment', 'vh', 'custom'].
    * @param {Number} [options.snapPointDist] Distance of the
