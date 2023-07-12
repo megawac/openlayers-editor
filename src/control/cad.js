@@ -37,6 +37,8 @@ class CadControl extends Control {
    *   on a pointer move event (all pointer events handled by default)
    * @param {Function} [options.filter] Returns an array containing the features
    *   to include for CAD (takes the source as a single argument).
+   * @param {Function} [options.lineFilter] An optional filter for the generated snapping lines
+   *   array (takes the lines and cursor coordinate as arguments and returns the new line array)
    * @param {Number} [options.nbClosestFeatures] Number of features to use for snapping (closest first). Default is 5.
    * @param {Number} [options.snapTolerance] Snap tolerance in pixel
    *   for snap lines. Default is 10.
@@ -146,6 +148,11 @@ class CadControl extends Control {
      * @private
      */
     this.filter = options.filter || null;
+
+    /**
+     * Filter the generated line list
+     */
+    this.lineFilter = options.lineFilter || null;
 
     /**
      * Determines whether to handle a pointer event
@@ -677,7 +684,7 @@ class CadControl extends Control {
       snapLinesOrder,
     } = this.properties;
 
-    const lines = [];
+    let lines = [];
     const helpLinesOrdered = [];
     const helpLines = {
       [ORTHO_LINE_KEY]: [],
@@ -726,6 +733,10 @@ class CadControl extends Control {
         lines.push(lineA);
       }
     });
+
+    if (typeof this.lineFilter === 'function') {
+      lines = this.lineFilter(lines, coordinate);
+    }
 
     // We snap on intersections of lines (distance < this.snapTolerance) or on all the help lines.
     const intersectFeatures = getIntersectedLinesAndPoint(
