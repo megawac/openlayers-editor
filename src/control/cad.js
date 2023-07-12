@@ -59,9 +59,6 @@ class CadControl extends Control {
    * @param {ol.VectorSource} [options.source] The vector source to retrieve the snappable features from.
    * @param {ol.style.Style.StyleLike} [options.snapStyle] Style used for the snap layer.
    * @param {ol.style.Style.StyleLike} [options.linesStyle] Style used for the lines layer.
-   * @param {ol.style.Style.StyleLike} [options.orthoLinesStyle] Style used for the lines layer.
-   * @param {ol.style.Style.StyleLike} [options.segmentLinesStyle] Style used for the lines layer.
-   * @param {ol.style.Style.StyleLike} [options.Style] Style used for the lines layer.
    *
    */
   constructor(options) {
